@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OwlModule } from 'ngx-owl-carousel';
+import { WishComponent } from './wish/wish.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
-    DashboardComponent
+    DashboardComponent,
+    WishComponent
   ],
   imports: [
     BrowserModule,
