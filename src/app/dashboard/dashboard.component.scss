@@ -1,0 +1,177 @@
+.dash-header{
+  background: #38506a url(../../assets/images/fetti.gif);
+  padding: 25px 0;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-size: 50%;
+}
+.dash-header h1{
+  color: #fff;
+  padding-bottom: 20px;
+}
+.nav-pills .nav-link.active{
+  background-color: #ffffff;
+  color: #000;
+}
+.nav-link, .nav-link:hover{
+  color: #fff;
+}
+.nav.nav-pills{
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(255 255 255 / 16%);
+}
+.msg{
+  padding-top: 20px;
+}
+.msg ul{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.msg ul li{
+  width: 24%;
+}
+.each-msg{
+  text-align: center;
+  cursor: pointer;
+}
+.each-msg img{
+  width: 70%;
+}
+.each-msg.open:hover img{
+  -webkit-animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+transform: translate3d(0, 0, 0);
+-webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+perspective: 1000px;
+}
+.each-msg h4{
+  font-size: 30px;
+  color: rgb(255, 28, 28);
+  margin: 10px 0;
+}
+.each-msg p{
+  font-size: 14px;
+}
+.thumb{
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  background: #ddd;
+  box-shadow: 0px 0px 0px 10px #fff;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 5px;
+  text-align: center;
+}
+.thumb img{
+  height: 70%;
+  width: 70%;
+  margin: auto;
+  object-fit: contain;
+  position: relative;
+  left: auto;
+  top: 12px;
+  transform: none;
+}
+.msg-wrap{
+  background:#f1f1f1;
+  border-radius: 5px;
+  .modal-header{
+    background: #38506a;
+
+  }
+  .modal-title{
+    color: #e4c97c;
+  }
+}
+.tab-content .modal-content{
+  padding-top: 100px;
+  background: transparent;
+  border:none;
+}
+.msg-wrap .modal-title{
+  width: 100%;
+  // color: #fff;
+  font-size: 30px;
+  padding: 25px 0;
+  text-align: center;
+}
+.msg-wrap .modal-body{
+  text-align: center;
+}
+.msg-wrap .modal-footer{
+  font-family: 'Cinzel Decorative', cursive;
+}
+.msg-wrap .modal-footer button span, .msg-wrap .modal-footer button i{
+  color: #000;
+}
+.msg-wrap .modal-footer button span{
+  margin-left: 10px;
+  font-weight: 700;
+}
+.msg-wrap .modal-footer button i{
+  margin-right:10px;
+}
+#back{
+  position: absolute;
+  color: #fff;
+  font-size: 22px;
+  left: 30px;
+  top: 30px;
+  cursor: pointer;
+  span{
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
+@-webkit-keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.nav-item{
+  margin-right: 50px;
+}
+
+@media only screen and (max-width:480px){
+  .msg ul{
+    flex-wrap: wrap;
+    li{
+      width: 50%;
+    }
+  }
+  .each-msg h4{
+    font-size: 24px;
+  }
+}
