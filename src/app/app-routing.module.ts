@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { WishComponent } from './wish/wish.component';
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -14,6 +15,10 @@ const routes: Routes = [
 
   },
   {
+    path: 'wish/:id',
+    component:  WishComponent
+  },
+  {
     path: '',
     redirectTo: 'index',
     pathMatch: 'full'
@@ -22,6 +27,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+
+exports: [RouterModule]
 })
 export class AppRoutingModule { }

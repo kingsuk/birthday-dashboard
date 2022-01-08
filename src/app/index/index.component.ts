@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/internal/Observable';
+import { finalize } from 'rxjs/internal/operators/finalize';
+import { tap } from 'rxjs/operators';
 import { WishService } from './../wish.service';
+
 
 @Component({
   selector: 'app-index',
@@ -21,26 +26,73 @@ export class IndexComponent implements OnInit {
     password: "",
     relationship: "",
     wish: "",
-    isOpen:false
+    isOpen: false,
+    files:[]
 
   }
+  fileuploded:boolean=false
+  showLoader:any=false;
+  uploads: any[];
+  downloadURLs: any[];
+  uploadPercent: Observable<number>;
 
-  constructor(private router: Router, private _service: WishService) { }
+  constructor(private router: Router, private _service: WishService, private storage: AngularFireStorage) { }
 
 
 
   ngOnInit(): void {
+
+
+
   }
   imageSrc: any;
-  readURL(event: Event): void {
-    // if (event.target.files && event.target.files[0]) {
-    //     const file = event.target.files[0];
+  readURL(event: any): void {
 
-    //     const reader = new FileReader();
-    //     reader.onload = e => this.imageSrc = reader.result;
+    this.showLoader=true;
+    // reset the array
+    this.uploads = [];
+    this.downloadURLs = [];
+    const filelist = event.target.files;
+    const allPercentage: Observable<number>[] = [];
+    try{
+      for (const file of filelist) {
+        const filePath = `files/${file.name}`;
+        const fileRef = this.storage.ref(filePath);
+        const task = this.storage.upload(filePath, file);
+        const _percentage$ = task.percentageChanges();
+        allPercentage.push(_percentage$);
 
-    //     reader.readAsDataURL(file);
-    // }
+        // observe percentage changes
+        this.uploadPercent = task.percentageChanges();
+
+        // get notified when the download URL is available
+        task.snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              console.log("url",url)
+              this.downloadURLs = this.downloadURLs.concat([url]);
+              console.log(this.downloadURLs)
+              if(filelist.length===this.downloadURLs.length){
+                console.log("complete now with",this.downloadURLs)
+                this.form.files=this.downloadURLs
+                this.showLoader=false;
+                this.fileuploded=true
+
+
+              }
+            });
+
+          })
+        ).subscribe();
+
+      }
+    }
+    catch(error){
+      this.showLoader=false;
+
+    }
+
+
   }
 
 
@@ -65,11 +117,22 @@ export class IndexComponent implements OnInit {
 
   }
 
-  hi() {
+  submit() {
 
     try {
       this._service.create(this.form).then(() => {
-        console.log('Created new item successfully!');
+
+        this.form = {
+          name: "",
+          email: "",
+          password: "",
+          relationship: "",
+          wish: "",
+          isOpen: false,
+          files:[]
+
+        }
+
 
       });
     }
@@ -81,6 +144,7 @@ export class IndexComponent implements OnInit {
 
 
   }
+
 
 
 

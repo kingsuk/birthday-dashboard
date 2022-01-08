@@ -25,37 +25,41 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="home" class="container tab-pane active">
-      <ul>
-       <ng-container  *ngFor="let box of wishes">
+      <div *ngIf="wishes"><ul>
+        <ng-container  *ngFor="let box of wishes">
 
-        <ng-container  *ngIf="box?.isOpen; else close">
-          <li>
-            <div class="each-msg">
-              <img src="assets/images/email-open.png" alt="">
-              <h4>{{box?.name}}</h4>
-              <p>{{box?.wish}}</p>
-            </div>
-          </li>
-        </ng-container >
+         <ng-container  *ngIf="box?.isOpen; else close">
+           <li (click)="goToWish(box)">
+             <div class="each-msg">
+               <img src="assets/images/email-open.png" alt="">
+               <h4>{{box?.name}}</h4>
+               <p>{{box?.wish}}</p>
+             </div>
+           </li>
+         </ng-container >
 
-        <ng-template #close>
-          <li>
-            <div class="each-msg open" >
-              <img src="assets/images/email-close.png" alt="">
-              <h4>{{box?.name}}</h4>
-              <p>{{box?.wish}}</p>
-            </div>
-          </li>
-        </ng-template>
-
-
-       </ng-container>
+         <ng-template #close>
+           <li (click)="goToWish(box)">
+             <div class="each-msg open" >
+               <img src="assets/images/email-close.png" alt="">
+               <h4>{{box?.name}}</h4>
+               <p>{{box?.wish}}</p>
+             </div>
+           </li>
+         </ng-template>
 
 
+        </ng-container>
 
 
 
-      </ul>
+
+
+       </ul></div>
+       <!-- <div *ngIf="!wishes">
+         No Wish yet
+       </div> -->
+
 
 
 
