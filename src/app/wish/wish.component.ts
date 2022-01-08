@@ -41,10 +41,14 @@ export class WishComponent implements OnInit {
 
   }
 
+  logOut(){
+    this._service.SignOut();
+  }
+
 
 
   isImage(filename) {
-    debugger
+
 
     if (filename.includes(".jpg") || filename.includes(".gif") || filename.includes(".bmp") || filename.includes(".jpeg") || filename.includes(".jpg") | filename.includes(".png")) {
       return true

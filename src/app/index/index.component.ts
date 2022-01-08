@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import * as Notiflix from 'notiflix';
@@ -12,7 +12,8 @@ import { WishService } from './../wish.service';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, AfterViewInit {
+  @ViewChild('someInput') someInput!: ElementRef;
   inputText: string = "";
   showError = false;
   familyEmail = "senderEmail@gmail.com"
@@ -36,6 +37,7 @@ export class IndexComponent implements OnInit {
   uploads: any[];
   downloadURLs: any[];
   uploadPercent: Observable<number>;
+  filelist: any;
 
   constructor(private router: Router, private _service: WishService, private storage: AngularFireStorage) { }
 
@@ -46,15 +48,17 @@ export class IndexComponent implements OnInit {
 
 
 
+
   }
   imageSrc: any;
-  readURL(event: any): void {
 
+
+  fileUpload(filelist) {
+    debugger
     this.showLoader = true;
     // reset the array
     this.uploads = [];
     this.downloadURLs = [];
-    const filelist = event.target.files;
     const allPercentage: Observable<number>[] = [];
     try {
       for (const file of filelist) {
@@ -79,6 +83,23 @@ export class IndexComponent implements OnInit {
                 this.form.files = this.downloadURLs
                 this.showLoader = false;
                 this.fileuploded = true
+                this._service.create(this.form).then(() => {
+                  Notiflix.Notify.success("Successfully Sent");
+                  this.form = {
+                    name: "",
+                    email: "",
+                    password: "",
+                    relationship: "",
+                    wish: "",
+                    isOpen: false,
+                    files: []
+
+                  }
+
+                });
+
+
+
 
 
               }
@@ -93,6 +114,12 @@ export class IndexComponent implements OnInit {
       this.showLoader = false;
 
     }
+
+  }
+
+  readURL(event: any): void {
+
+    this.filelist = event.target.files;
 
 
   }
@@ -111,6 +138,13 @@ export class IndexComponent implements OnInit {
 
   }
 
+  ngAfterViewInit(): void {
+    this.playAudio();
+
+
+
+  }
+
   // familyPasswordCheck() {
   //   if (this.familyPassword == this.form.password) {
   //     this.passwordMatch = true
@@ -122,43 +156,48 @@ export class IndexComponent implements OnInit {
 
   // }
 
+
+
+
   submit() {
 
-    if(this.form.password && this.form.wish){
-      this._service._otherSignIn(this.familyEmail,this.form.password).then(result=>{
+    if (this.form.password && this.form.wish) {
+      this._service._otherSignIn(this.familyEmail, this.form.password).then(result => {
 
 
         try {
-            this._service.create(this.form).then(() => {
 
-              this.form = {
-                name: "",
-                email: "",
-                password: "",
-                relationship: "",
-                wish: "",
-                isOpen: false,
-                files: []
+          this.fileUpload(this.filelist)
 
-              }
-              this.fileuploded=false;
-              this.showLoader=false;
+          // this.form = {
+          //   name: "",
+          //   email: "",
+          //   password: "",
+          //   relationship: "",
+          //   wish: "",
+          //   isOpen: false,
+          //   files: []
 
-
-
-            });
-          }
-          catch (error) {
-            console.log(error)
+          // }
+          // this.fileuploded = false;
+          // this.showLoader = false;
 
 
-          }
+
+
+
+        }
+        catch (error) {
+          console.log(error)
+
+
+        }
 
 
       })
     }
-    else{
-    Notiflix.Notify.info("Please Enter Valid details");
+    else {
+      Notiflix.Notify.info("Please Enter Valid details");
 
 
     }
@@ -185,7 +224,7 @@ export class IndexComponent implements OnInit {
     return false;
   }
 
-   isVideo(filename) {
+  isVideo(filename) {
     var ext = this.getExtension(filename);
     switch (ext.toLowerCase()) {
       case 'm4v':
@@ -198,9 +237,39 @@ export class IndexComponent implements OnInit {
     return false;
   }
 
-   getExtension(filename) {
+  getExtension(filename) {
     var parts = filename.split('.');
     return parts[parts.length - 1];
+  }
+
+
+
+  playAudio() {
+    //   let audio = new Audio();
+    //   audio.src = "assets/audio/tune4.mp3";
+    //   audio.load();
+    //   audio.muted=true;
+    //   audio.play();
+    //   audio.muted=false;
+    //   audio.play();
+
+
+    var audio = new Audio();
+    audio.src = 'assets/audio/tune4.mp3';
+    // when the sound has been loaded, execute your code
+    audio.oncanplaythrough = (event) => {
+      var playedPromise = audio.play();
+      if (playedPromise) {
+        playedPromise.catch((e) => {
+          console.log(e)
+          if (e.name === 'NotAllowedError' || e.name === 'NotSupportedError') {
+            console.log(e.name);
+          }
+        }).then(() => {
+          console.log("playing sound !!!");
+        });
+      }
+    }
   }
 
 

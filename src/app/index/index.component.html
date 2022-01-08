@@ -8,10 +8,11 @@
           </div>
       </button>
 </nav>
-<iframe src="assets/audio/tune4.mp3" allow="autoplay" style="display:none" id="iframeAudio"></iframe>
-<audio autoplay loop  id="playAudio">
+<!-- <iframe src="assets/audio/tune4.mp3" #someInput allow="autoplay" style="display:none" id="iframeAudio"></iframe> -->
+
+<!-- <audio autoplay loop #someInput  id="playAudio">
   <source src="assets/audio/tune4.mp3">
-</audio>
+</audio> -->
 <section class="slider slide carousel-fade" data-pause="true" id="demo" data-ride="carousel" data-interval="2500" >
   <div class="carousel-inner">
     <div class="carousel-item active each-slider">
@@ -313,7 +314,7 @@
 
               <p *ngIf="fileuploded" class="m-2 text-success">Files uploaded sucessfully</p>
               <!-- <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="your image" /> -->
-              <button [disabled]="!fileuploded"  (click)="submit()">Send message  <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              <button   (click)="submit()">Send message  <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
           </div>
 
 

@@ -70,6 +70,11 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  logOut(){
+    this._service.SignOut();
+  }
+
+
 
 
 

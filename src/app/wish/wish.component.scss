@@ -105,3 +105,32 @@
     margin-left: 10px;
   }
 }
+
+@media only screen and (max-width:480px){
+  #back{
+    top: 55px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    span{
+     font-size: 14px;
+    }
+  }
+  .media{
+    height: auto;
+  }
+  .wish-text{
+    padding: 50px 20px;
+    h2{
+      font-size: 1.5rem;
+    }
+    p{
+      padding: 20px 0px;
+    }
+  }
+  .dash-header{
+    h1{
+      font-size: 17px;
+    }
+  }
+}

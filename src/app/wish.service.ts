@@ -50,7 +50,7 @@ export class WishService {
   }
 
   create(any: any): any {
-    Notiflix.Notify.success("Successfully Sent");
+    // Notiflix.Notify.success("Successfully Sent");
     return this.wishRef.push(any);
 
   }
@@ -79,9 +79,11 @@ export class WishService {
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
+        debugger
+        this.router.navigate(['dashboard']);
+        // this.ngZone.run(() => {
+        //   this.router.navigate(['dashboard']);
+        // });
 
       }).catch((error) => {
         Notiflix.Notify.failure(error.message);

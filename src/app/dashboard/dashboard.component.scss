@@ -162,6 +162,18 @@ perspective: 1000px;
 
 .nav-item{
   margin-right: 50px;
+  .nav-link{
+    font-family: 'Cinzel Decorative', cursive;
+    background: #e4c97c;
+    &.active{
+      background: #e4c97c;
+      transform: scale(1.01);
+      border: 2px solid #38506a;
+      box-shadow: 0px 0px 8px 1px #e4c97c;
+      color: #fff;
+    }
+  }
+
 }
 
 @media only screen and (max-width:480px){
@@ -173,5 +185,24 @@ perspective: 1000px;
   }
   .each-msg h4{
     font-size: 24px;
+  }
+  .dash-header h1{
+    font-size: 17px;
+  }
+  #back{
+    top: 55px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    span{
+     font-size: 14px;
+    }
+  }
+  .nav-item{
+    margin-right: -5px;
+  }
+  .nav-item, .nav-item.active{
+    padding: 5px 10px;
+    font-size: 13px;
   }
 }
