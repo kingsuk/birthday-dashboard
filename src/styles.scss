@@ -1,0 +1,54 @@
+/*=============== general-css ==================*/
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+html{
+    font-size: 16px;
+}
+body{
+  font-family: 'Hind', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Cinzel Decorative', cursive;
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+}
+h2{
+  font-size:2.5rem;
+  line-height:3.063rem;
+}
+section{
+  position:relative;
+}
+a, a:hover{
+  text-decoration:none;
+  transition:0.4s all ease-in-out;
+}
+a:focus, button:focus{
+    outline: none;
+}
+span{
+   transition:0.4s all ease-in-out;
+}
+p{
+  padding:0;
+  margin:0;
+}
+ul {
+  margin:0;
+  padding:0;
+}
+ul li{
+  list-style:none;
+}
+input:focus, textarea:focus{
+    outline: none;
+    box-shadow: none;
+}
+/*=============== general-css ==================*/
+.modal-backdrop {
+  display: none;
+}
