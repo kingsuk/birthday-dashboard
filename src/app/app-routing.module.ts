@@ -6,12 +6,12 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
-    // loadChildren: () => import('./dashboard/dashboard.component').then( m => m.DashboardComponent)
+
   },
   {
     path: 'index',
     component:  IndexComponent
-    // loadChildren: () => import('./admin-login/admin-login.component').then( m => m.AdminLoginComponent)
+
   },
   {
     path: '',

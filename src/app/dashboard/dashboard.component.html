@@ -1,235 +1,62 @@
 <header class="dash-header">
-  <div  id="back" routerLink="/index">
+  <div id="back" routerLink="/index">
     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
     <span>Back to login</span>
   </div>
 
   <h1 class="text-center">Welcome to your dashboard</h1>
   <div class="container text-center">
-        <!-- Nav pills -->
-      <ul class="nav nav-pills justify-content-center" role="tablist">
-          <li class="nav-item">
-              <a class="nav-link active" data-toggle="pill" href="#home">Husband</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#menu1">Family</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" data-toggle="pill" href="#menu2">Friends</a>
-          </li>
-      </ul>
+    <!-- Nav pills -->
+    <ul class="nav nav-pills justify-content-center" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" (click)="filter($event,'NISCHAY')" data-toggle="pill" >Husband</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="filter($event,'FAMILY')" data-toggle="pill" >Family</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="filter($event,'FRIENDS')" data-toggle="pill" >Friends</a>
+      </li>
+
+    </ul>
   </div>
 </header>
 <div class="msg">
-    <!-- Tab panes -->
-      <div class="tab-content">
-          <div id="home" class="container tab-pane active">
-              <ul>
-                  <li>
-                      <div class="each-msg open" data-toggle="modal" data-target="#myModal">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg">
-                          <img src="assets/images/email-open.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg open">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg open">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                    <div class="each-msg open" data-toggle="modal" data-target="#myModal">
-                        <img src="assets/images/email-close.png" alt="">
-                        <h4>Sender name</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="each-msg">
-                        <img src="assets/images/email-open.png" alt="">
-                        <h4>Sender name</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="each-msg open">
-                        <img src="assets/images/email-close.png" alt="">
-                        <h4>Sender name</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="each-msg open">
-                        <img src="assets/images/email-close.png" alt="">
-                        <h4>Sender name</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                </li>
-              </ul>
-               <!-- The Modal -->
-                  <div class="modal fade" id="myModal">
-                      <div class="modal-dialog modal-md  modal-dialog-centered">
-                      <div class="modal-content">
-                          <div class="thumb">
-                              <img src="assets/images/email-open.png" alt="">
-                          </div>
-                          <div class="msg-wrap">
-                              <div class="modal-header">
-                                  <h4 class="modal-title">Message Heading</h4>
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active">
+      <ul>
+       <ng-container  *ngFor="let box of wishes">
 
-                                  <!-- Modal body -->
-                                  <div class="modal-body">
-                                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p>
-                                  </div>
+        <ng-container  *ngIf="box?.isOpen; else close">
+          <li>
+            <div class="each-msg">
+              <img src="assets/images/email-open.png" alt="">
+              <h4>{{box?.name}}</h4>
+              <p>{{box?.wish}}</p>
+            </div>
+          </li>
+        </ng-container >
 
-                                  <!-- Modal footer -->
-                                  <div class="modal-footer">
-                                  <div type="button" data-dismiss="modal"><i class="fas fa-pen-nib"></i>From <span>Sender</span></div>
-                                  </div>
+        <ng-template #close>
+          <li>
+            <div class="each-msg open" >
+              <img src="assets/images/email-close.png" alt="">
+              <h4>{{box?.name}}</h4>
+              <p>{{box?.wish}}</p>
+            </div>
+          </li>
+        </ng-template>
 
-                          </div>
 
-                      </div>
-                      </div>
-                  </div>
-          </div>
-          <div id="menu1" class="container tab-pane fade"><br>
-              <ul>
-                  <li>
-                      <div class="each-msg open" data-toggle="modal" data-target="#myModal">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg">
-                          <img src="assets/images/email-open.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg open">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg open">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-              </ul>
-               <!-- The Modal -->
-                  <div class="modal fade" id="myModal">
-                      <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                          <div class="thumb">
-                              <img src="assets/images/email-open.png" alt="">
-                          </div>
-                          <div class="msg-wrap">
-                              <div class="modal-header">
-                                  <h4 class="modal-title">Message Heading</h4>
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  </div>
+       </ng-container>
 
-                                  <!-- Modal body -->
-                                  <div class="modal-body">
-                                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p>
-                                  </div>
 
-                                  <!-- Modal footer -->
-                                  <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-pen-nib"></i>From <span>Sender</span></button>
-                                  </div>
 
-                          </div>
 
-                      </div>
-                      </div>
-                  </div>
-          </div>
-          <div id="menu2" class="container tab-pane fade"><br>
-              <ul>
-                  <li>
-                      <div class="each-msg open" data-toggle="modal" data-target="#myModal">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg">
-                          <img src="assets/images/email-open.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg open">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-                  <li>
-                      <div class="each-msg open">
-                          <img src="assets/images/email-close.png" alt="">
-                          <h4>Sender name</h4>
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                      </div>
-                  </li>
-              </ul>
-               <!-- The Modal -->
-                  <div class="modal fade" id="myModal">
-                      <div class="modal-dialog modal-md">
-                      <div class="modal-content">
-                          <div class="thumb">
-                              <img src="assets/images/email-open.png" alt="">
-                          </div>
-                          <div class="msg-wrap">
-                              <div class="modal-header">
-                                  <h4 class="modal-title">Message Heading</h4>
-                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  </div>
 
-                                  <!-- Modal body -->
-                                  <div class="modal-body">
-                                      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p>
-                                  </div>
+      </ul>
 
-                                  <!-- Modal footer -->
-                                  <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-pen-nib"></i>From <span>Sender</span></button>
-                                  </div>
 
-                          </div>
 
-                      </div>
-                      </div>
-                  </div>
-          </div>
-
-</div>
+  </div>

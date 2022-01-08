@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { WishService } from './../wish.service';
 
 @Component({
   selector: 'app-index',
@@ -6,8 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
+  password = "KISHNISH1801"
+  familyPassword = "K181284"
+  inputText: string = "";
+  showError = false;
 
-  constructor() { }
+  passwordMatch: boolean = false
+
+  form = {
+    name: "",
+    email: "",
+    password: "",
+    relationship: "",
+    wish: "",
+    isOpen:false
+
+  }
+
+  constructor(private router: Router, private _service: WishService) { }
+
+
 
   ngOnInit(): void {
   }
@@ -21,5 +41,48 @@ export class IndexComponent implements OnInit {
 
     //     reader.readAsDataURL(file);
     // }
-}
+  }
+
+
+  logIn(password) {
+
+    if (this.password == password) {
+      this.router.navigate(["/dashboard"])
+    }
+    {
+      this.showError = true
+    }
+  }
+
+  familyPasswordCheck() {
+    if (this.familyPassword == this.form.password) {
+      this.passwordMatch = true
+
+    }
+    else {
+      this.passwordMatch = false
+    }
+
+  }
+
+  hi() {
+
+    try {
+      this._service.create(this.form).then(() => {
+        console.log('Created new item successfully!');
+
+      });
+    }
+    catch (error) {
+      console.log(error)
+
+
+    }
+
+
+  }
+
+
+
+
 }
