@@ -297,13 +297,15 @@
 
 
           </div>
-          <input type="password" [(ngModel)]="form.password" [ngModelOptions]="{standalone: true}" (input)="familyPasswordCheck()"  placeholder="Enter your password">
+          <!-- <input type="password" [(ngModel)]="form.password" [ngModelOptions]="{standalone: true}" (input)="familyPasswordCheck()"  placeholder="Enter your password"> -->
+          <input type="password" [(ngModel)]="form.password" [ngModelOptions]="{standalone: true}"   placeholder="Enter your password">
+
           <textarea [(ngModel)]="form.wish" [ngModelOptions]="{standalone: true}" placeholder="Leave your wish" class="form-control"></textarea>
-           <!-- <button (click)="hi()">Demo check</button> -->
+           <!-- <button (click)="submit()">Demo check</button> -->
           <div class="btn-grp" *ngIf="true">
               <!-- <button id="fake"> <i class="fa fa-folder-open-o" aria-hidden="true"></i> Upload Media</button> -->
 
-              <input *ngIf="!showLoader" type="file" id="" (change)="readURL($event)" multiple/>
+              <input class="my-4" *ngIf="!showLoader &&!fileuploded" type="file" id="" (change)="readURL($event)" multiple/>
 
               <div *ngIf="showLoader" class="spinner-border text-primary text-center p-4 m-3" role="status">
                 <span class="sr-only">Loading...</span>
@@ -311,7 +313,7 @@
 
               <p *ngIf="fileuploded" class="m-2 text-success">Files uploaded sucessfully</p>
               <!-- <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" alt="your image" /> -->
-              <button [disabled]="!fileuploded" (click)="submit()">Send message  <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              <button [disabled]="!fileuploded"  (click)="submit()">Send message  <i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
           </div>
 
 

@@ -11,12 +11,15 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FormsModule } from '@angular/forms';
 import { WishComponent } from './wish/wish.component';
+import { AngularFireAuthModule } from "@angular/fire/auth";
+
 import {
   AngularFireStorageModule,
   AngularFireStorageReference,
   AngularFireUploadTask,
 
 } from "@angular/fire/storage";
+
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import {
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireAuthModule,
+
 
 
 

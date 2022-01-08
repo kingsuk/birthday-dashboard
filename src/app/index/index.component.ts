@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+import * as Notiflix from 'notiflix';
 import { Observable } from 'rxjs/internal/Observable';
 import { finalize } from 'rxjs/internal/operators/finalize';
-import { tap } from 'rxjs/operators';
 import { WishService } from './../wish.service';
 
 
@@ -13,10 +13,10 @@ import { WishService } from './../wish.service';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  password = "KISHNISH1801"
-  familyPassword = "K181284"
   inputText: string = "";
   showError = false;
+  familyEmail = "senderEmail@gmail.com"
+  email = "admin@admin.com"
 
   passwordMatch: boolean = false
 
@@ -27,11 +27,12 @@ export class IndexComponent implements OnInit {
     relationship: "",
     wish: "",
     isOpen: false,
-    files:[]
+    files: [],
+
 
   }
-  fileuploded:boolean=false
-  showLoader:any=false;
+  fileuploded: boolean = false
+  showLoader: any = false;
   uploads: any[];
   downloadURLs: any[];
   uploadPercent: Observable<number>;
@@ -44,17 +45,18 @@ export class IndexComponent implements OnInit {
 
 
 
+
   }
   imageSrc: any;
   readURL(event: any): void {
 
-    this.showLoader=true;
+    this.showLoader = true;
     // reset the array
     this.uploads = [];
     this.downloadURLs = [];
     const filelist = event.target.files;
     const allPercentage: Observable<number>[] = [];
-    try{
+    try {
       for (const file of filelist) {
         const filePath = `files/${file.name}`;
         const fileRef = this.storage.ref(filePath);
@@ -69,14 +71,14 @@ export class IndexComponent implements OnInit {
         task.snapshotChanges().pipe(
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
-              console.log("url",url)
+              console.log("url", url)
               this.downloadURLs = this.downloadURLs.concat([url]);
               console.log(this.downloadURLs)
-              if(filelist.length===this.downloadURLs.length){
-                console.log("complete now with",this.downloadURLs)
-                this.form.files=this.downloadURLs
-                this.showLoader=false;
-                this.fileuploded=true
+              if (filelist.length === this.downloadURLs.length) {
+                console.log("complete now with", this.downloadURLs)
+                this.form.files = this.downloadURLs
+                this.showLoader = false;
+                this.fileuploded = true
 
 
               }
@@ -87,8 +89,8 @@ export class IndexComponent implements OnInit {
 
       }
     }
-    catch(error){
-      this.showLoader=false;
+    catch (error) {
+      this.showLoader = false;
 
     }
 
@@ -97,52 +99,108 @@ export class IndexComponent implements OnInit {
 
 
   logIn(password) {
+    try {
 
-    if (this.password == password) {
-      this.router.navigate(["/dashboard"])
-    }
-    {
+      this._service.SignIn(this.email, password)
+
+    } catch (error) {
       this.showError = true
-    }
-  }
-
-  familyPasswordCheck() {
-    if (this.familyPassword == this.form.password) {
-      this.passwordMatch = true
 
     }
-    else {
-      this.passwordMatch = false
-    }
+
 
   }
+
+  // familyPasswordCheck() {
+  //   if (this.familyPassword == this.form.password) {
+  //     this.passwordMatch = true
+
+  //   }
+  //   else {
+  //     this.passwordMatch = false
+  //   }
+
+  // }
 
   submit() {
 
-    try {
-      this._service.create(this.form).then(() => {
-
-        this.form = {
-          name: "",
-          email: "",
-          password: "",
-          relationship: "",
-          wish: "",
-          isOpen: false,
-          files:[]
-
-        }
+    if(this.form.password && this.form.wish){
+      this._service._otherSignIn(this.familyEmail,this.form.password).then(result=>{
 
 
-      });
+        try {
+            this._service.create(this.form).then(() => {
+
+              this.form = {
+                name: "",
+                email: "",
+                password: "",
+                relationship: "",
+                wish: "",
+                isOpen: false,
+                files: []
+
+              }
+              this.fileuploded=false;
+              this.showLoader=false;
+
+
+
+            });
+          }
+          catch (error) {
+            console.log(error)
+
+
+          }
+
+
+      })
     }
-    catch (error) {
-      console.log(error)
+    else{
+    Notiflix.Notify.info("Please Enter Valid details");
 
 
     }
 
 
+
+
+
+
+
+  }
+
+
+  isImage(filename) {
+    var ext = this.getExtension(filename);
+    switch (ext.toLowerCase()) {
+      case 'jpg':
+      case 'gif':
+      case 'bmp':
+      case 'png':
+        //etc
+        return true;
+    }
+    return false;
+  }
+
+   isVideo(filename) {
+    var ext = this.getExtension(filename);
+    switch (ext.toLowerCase()) {
+      case 'm4v':
+      case 'avi':
+      case 'mpg':
+      case 'mp4':
+        // etc
+        return true;
+    }
+    return false;
+  }
+
+   getExtension(filename) {
+    var parts = filename.split('.');
+    return parts[parts.length - 1];
   }
 
 
