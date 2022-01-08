@@ -1,18 +1,10 @@
 <header class="dash-header">
   <div id="back" routerLink="/index">
     <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
-    <span>Back to login</span>
+    <span>Home</span>
   </div>
 
-  <div style="    top: 45px;
-  /* float: right; */
-  position: absolute;
-  right: 0;
-  right: 50px;
-  font-size: 20px;
-  font-weight: 500;
-  color: white;
-  cursor: pointer;"  (click)=logOut()>
+  <div class="bk" (click)=logOut()>
     <i class="fa fa-sign-out" aria-hidden="true"></i>
     <span>Logout</span>
   </div>
@@ -45,15 +37,15 @@
            <li (click)="goToWish(box)">
              <div class="each-msg">
                <img src="assets/images/email-open.png" alt="">
-               <h4>{{box?.name}}</h4>
-               <p style="
+               <h4><span>Sent by </span>{{box?.name}}</h4>
+               <!-- <p style="
                 overflow: hidden;
 
                 display: -webkit-box;
 
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
-            ">{{box?.wish}}</p>
+            ">{{box?.wish}}</p> -->
              </div>
            </li>
          </ng-container >
@@ -62,15 +54,15 @@
            <li (click)="goToWish(box)">
              <div class="each-msg open" >
                <img src="assets/images/email-close.png" alt="">
-               <h4>{{box?.name}}</h4>
-               <p style="
+               <h4><span>Sent by</span>{{box?.name}}</h4>
+               <!-- <p style="
                overflow: hidden;
 
                display: -webkit-box;
 
                -webkit-line-clamp: 2;
                -webkit-box-orient: vertical;
-           ">{{box?.wish}}</p>
+           ">{{box?.wish}}</p> -->
              </div>
            </li>
          </ng-template>

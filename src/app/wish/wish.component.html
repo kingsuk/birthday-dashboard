@@ -2,19 +2,11 @@
   <header class="dash-header">
     <div id="back" routerLink="/dashboard">
       <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
-      <span>Back to dashboard</span>
+      <span>Dashboard</span>
     </div>
     <h1 class="text-center">Here is your messages</h1>
 
-    <div style="    top: 45px;
-    /* float: right; */
-    position: absolute;
-    right: 0;
-    right: 50px;
-    font-size: 20px;
-    font-weight: 500;
-    color: white;
-    cursor: pointer;"  (click)=logOut()>
+    <div (click)=logOut() class="bk">
       <i class="fa fa-sign-out" aria-hidden="true"></i>
       <span>Logout</span>
     </div>
@@ -24,7 +16,11 @@
       <div id="demo" class="carousel slide" data-ride="carousel" uk-lightbox data-interval="2000">
 
         <!-- Indicators -->
-
+ <!-- Indicators -->
+ <ul class="carousel-indicators">
+  <li data-target="#demo" data-slide-to="0" class="active"></li>
+  <li data-target="#demo" data-slide-to="1"></li>
+</ul>
 
         <!-- The slideshow -->
 
@@ -66,6 +62,7 @@
               <span class="sr-only">Loading...</span>
             </div>
           </ng-template>
+
 
 
           <!-- <ng-container *ngFor="let item of _files;let i=index">
@@ -124,7 +121,7 @@
       <img src="../../assets/images/wish.png" alt="" id="bt">
     </div>
     <div class="sender-info">
-      <p>Send by <span>{{name}}</span></p>
+      <p>Sent by <span>{{name}}</span></p>
     </div>
   </div>
 

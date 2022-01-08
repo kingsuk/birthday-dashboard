@@ -1,6 +1,6 @@
 .dash-header{
   background: #38506a url(../../assets/images/fetti.gif);
-  padding: 25px 0;
+  padding: 55px 0 25px;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   background-size: 50%;
@@ -27,7 +27,7 @@
 .msg ul{
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   flex-wrap: wrap;
 }
 .msg ul li{
@@ -52,6 +52,11 @@ perspective: 1000px;
   font-size: 30px;
   color: rgb(255, 28, 28);
   margin: 10px 0;
+  span{
+    display: block;
+    color: #444;
+    font-size: 16px !important;
+  }
 }
 .each-msg p{
   font-size: 14px;
@@ -123,7 +128,7 @@ perspective: 1000px;
   color: #fff;
   font-size: 22px;
   left: 30px;
-  top: 30px;
+  top: 20px;
   cursor: pointer;
   span{
     display: inline-block;
@@ -175,7 +180,16 @@ perspective: 1000px;
   }
 
 }
-
+.bk{
+  top: 20px;
+  position: absolute;
+  right: 0;
+  right: 30px;
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+}
 @media only screen and (max-width:480px){
   .msg ul{
     flex-wrap: wrap;
@@ -190,7 +204,7 @@ perspective: 1000px;
     font-size: 17px;
   }
   #back{
-    top: 55px;
+    top: 15px;
     font-size: 24px;
     display: flex;
     align-items: center;
@@ -204,5 +218,9 @@ perspective: 1000px;
   .nav-item, .nav-item.active{
     padding: 5px 10px;
     font-size: 13px;
+  }
+  .bk{
+    top:12px;
+    font-size: 16px;
   }
 }

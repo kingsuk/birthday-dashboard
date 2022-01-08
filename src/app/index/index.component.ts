@@ -142,7 +142,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
     this.playAudio();
 
 
-
   }
 
   // familyPasswordCheck() {

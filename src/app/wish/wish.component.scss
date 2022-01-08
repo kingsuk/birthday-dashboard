@@ -3,7 +3,7 @@
 }
 .dash-header{
   background: #38506a url(../../assets/images/fetti.gif);
-  padding: 25px 0;
+  padding: 55px 0 25px;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
   background-size: 50%;
@@ -19,6 +19,7 @@
   width: 100%;
   #demo{
     width: 100%;
+    height: 100%;
   }
 }
 .carousel-item{
@@ -33,8 +34,8 @@
     object-fit: cover;
   }
   video{
-    height: 100%;
-    width:100%;
+    height:75%;
+    width:75%;
     object-fit: cover;
   }
 }
@@ -101,17 +102,32 @@
   color: #fff;
   font-size: 22px;
   left: 30px;
-  top: 30px;
+  top: 20px;
   cursor: pointer;
   span{
     display: inline-block;
     margin-left: 10px;
   }
 }
-
+.bk{
+  top: 20px;
+  position: absolute;
+  right: 0;
+  right: 30px;
+  font-size: 22px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+}
+.carousel-indicators li{
+  height: 100px;
+  width: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+}
 @media only screen and (max-width:480px){
   #back{
-    top: 55px;
+    top: 15px;
     font-size: 24px;
     display: flex;
     align-items: center;
@@ -135,5 +151,13 @@
     h1{
       font-size: 17px;
     }
+  }
+  .bk{
+    top:12px;
+    font-size: 16px;
+  }
+  .carousel-indicators li{
+    height: 50px;
+    width: 75px;
   }
 }
