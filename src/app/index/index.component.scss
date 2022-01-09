@@ -106,8 +106,6 @@
   background: #e4c97c;
   color: #fff;
   margin: 20px 0;
-  display: inherit;
-  justify-content: space-evenly;
   width: 130px;
   padding: 10px 0;
   align-items: center;
@@ -201,5 +199,12 @@
   }
   .slider{
     display: none;
+  }
+  .modal-body form button{
+    width: 100%;
+    display: block;
+  }
+  .btn-grp{
+    flex-wrap: wrap;
   }
 }
